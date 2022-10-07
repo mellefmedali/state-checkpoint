@@ -2,10 +2,10 @@ import React from "react";
 
 class App extends React.Component {
     state = {
-        fullName: "default full Name",
-        bio: "default biographie",
+        fullName: "Mohamed Ali Mellef",
+        bio: "a Gomycode student",
         imgSrc: "./logo.bmp",
-        profession: "default profession",
+        profession: "mechanical engineering",
         isShown: false,
         delay: 0
     }
@@ -26,7 +26,8 @@ class App extends React.Component {
         }
 
         const profile = (
-            `Hi I am ${this.state.fullName},
+            `Hi,
+            I am ${this.state.fullName},
             I am ${this.state.bio},
             and I do ${this.state.profession} for living !!!`
         )
