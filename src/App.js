@@ -1,29 +1,43 @@
 import React from "react";
 
-let person = { fullname: "test" }
 class App extends React.Component {
     state = {
         fullName: "default full Name",
         bio: "default biographie",
         imgSrc: "./logo.bmp",
         profession: "default profession",
-        isShown: false
+        isShown: false,
+        delay: 0
     }
+
+    componentDidMount() {
+        this.myInterval = setInterval(()=>{
+            this.setState({
+                delay: this.state.delay + 1
+            })
+        },1000)
+    }
+
     render() {
+        const {delay} = this.state;
+        console.log("this.state.delay: ", {delay})
         const handleShow = () => {
-            this.state.isShown ? (this.setState({ isShown: false })) : (this.setState({ isShown: true }))
+            this.state.isShown ? (this.setState({ isShown: false })) : (this.setState({ isShown: true }));
         }
+
         const profile = (
             `Hi I am ${this.state.fullName},
             I am ${this.state.bio},
-            and I do ${this.state.profession} for living !!!`)
+            and I do ${this.state.profession} for living !!!`
+        )
         return (
             <>
+                {delay<1?(<></>):(<h1>This App component did mount since : {delay} secondes</h1>)}
                 <button onClick={handleShow}>{this.state.isShown ? ("Hide") : ("Show")} Profile</button>
                 {this.state.isShown ? (
                     <>
                         <div>{profile}</div>
-                        <img src={this.state.imgSrc} alt="myPic"/>
+                        <img src={this.state.imgSrc} alt="myPic" />
                     </>
                 ) : (<></>)}
             </>
